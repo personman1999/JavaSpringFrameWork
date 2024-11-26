@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: DemoJPA
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/demojpa
+    username: root
+    password: admin123
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+cybersoft:
+  username: admin112
+  password: 123456
