@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: DemoJPA
+  datasource:
+    url: jdbc:mysql://localhost:3307/manageschool
+    username: root
+    password: admin123
+  jpa:
+    hibernate:
+      ddl-auto: none
