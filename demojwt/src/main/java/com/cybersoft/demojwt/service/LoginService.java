@@ -26,47 +26,43 @@ public class LoginService {
     @Value("${jwt.key}")
     public String keyJWT;
 
-//    public String login(String username, String password){
-//        String token = "";
-////        SecretKey key = Jwts.SIG.HS256.key().build();
-////        String strkey = Encoders.BASE64.encode(key.getEncoded());
-////        System.out.println("key " + strkey);
-//        Optional<UserEntity> user = userRepository.findByUsername(username);
-//       if (user.isPresent()){
-//           UserEntity userEntity = user.get();
-//
-//          if (passwordEncoder.matches(password, userEntity.getPassword())){
-//
-//              SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(keyJWT));
-//
-//              String jws = Jwts.builder().subject("Joe").signWith(key).compact();
-//                token = jws;
-//          }
-//
-//       }
-//
-//        return token;
-//    }
-
-
-    public String login(String username, String password) {
+    public String login(String username, String password){
         String token = "";
+//        SecretKey key = Jwts.SIG.HS256.key().build();
+//        String strkey = Encoders.BASE64.encode(key.getEncoded());
+//        System.out.println("key " + strkey);
+        Optional<UserEntity> user = userRepository.findByUsername(username);
+       if (user.isPresent()){
+           UserEntity userEntity = user.get();
 
-        List<UserEntity> users = userRepository.findByUsername(username);
-        if (!users.isEmpty()) {
-            UserEntity userEntity = users.get(0); // Lấy người dùng đầu tiên (nếu có nhiều người dùng, logic xử lý sẽ cần thay đổi)
+          if (passwordEncoder.matches(password, userEntity.getPassword())){
 
-            if (passwordEncoder.matches(password, userEntity.getPassword())) {
-                SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(keyJWT));
-                token = Jwts.builder()
-                        .setSubject(userEntity.getUsername())
-                        .signWith(key)
-                        .compact();
-            }
-        }
+              SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(keyJWT));
+
+              String jws = Jwts.builder().subject(userEntity.getRole()).signWith(key).compact();
+                token = jws;
+          }
+
+       }
 
         return token;
     }
 
 
+//    public String login(String username, String password) {
+//        String token = "";
+//        List<UserEntity> users = userRepository.findByUsername(username);
+//        if (!users.isEmpty()) {
+//            UserEntity userEntity = users.get(0);
+//
+//            if (passwordEncoder.matches(password, userEntity.getPassword())) {
+//                SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(keyJWT));
+//                token = Jwts.builder()
+//                        .setSubject(userEntity.getUsername())
+//                        .signWith(key)
+//                        .compact();
+//            }
+//        }
+//        return token;
+//    }
 }

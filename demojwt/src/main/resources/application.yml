@@ -9,7 +9,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 
 jwt:
   key: TXou6BY5aeaDU8GFw4f0+6AzGatZoSgd89Ph1rHP5Pk=
