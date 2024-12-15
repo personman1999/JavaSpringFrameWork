@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: DemoJPA
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/demojpa
+    username: root
+    password: admin123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+jwt:
+  key: TXou6BY5aeaDU8GFw4f0+6AzGatZoSgd89Ph1rHP5Pk=
